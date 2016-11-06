@@ -52,6 +52,7 @@
     };
     AsciiArt.ansiCodes = function(str, color) {
         if(!color) return str;
+
         if(!this.codes){
             this.codes = {
                 "off"       : '\033[0m',
@@ -90,6 +91,11 @@
                 "white_bg"  : '\033[47m'
             };
         }
+
+        if(Number.isInteger(color)){
+            return '\x1b[38;5;' + color + 'm' + str + this.codes["off"];
+        }
+
         var color_attrs = color.split("+");
         var ansi_str = "";
         for(var i=0, attr; attr = color_attrs[i]; i++) {

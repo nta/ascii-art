@@ -43,6 +43,7 @@
   "dependencies": {
     "browser-request": "^0.3.3",
     "dirname-shim": "0.0.1-alpha",
+    "x256": "0.0.2",
     "yargs": "*"
   },
   "devDependencies": {

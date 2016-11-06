@@ -38,6 +38,7 @@
         root.AsciiArtImage = factory(imgLoadBrowser, renderersBrowser, root.Canvas, root.Image);
     }
 }(this, function (readImage, getRenderers, Canvas, Image, getAverage) {
+    const x256 = require('x256');
     var color_profiles = {
         "darwin" : {
              "black" : [37, 188, 36],
@@ -271,6 +272,10 @@
     };
     
     AsciiArt.Image.getTerminalColor = function(r, g, b, options){
+        if (options.xterm){
+            return x256(r, g, b);
+        }
+
         var names = Object.keys(AsciiArt.Image.colorProfiles.darwin);
         var colors = names.map(function(name){
             return AsciiArt.Image.colorProfiles.darwin[name];
