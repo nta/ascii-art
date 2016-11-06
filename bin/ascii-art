@@ -19,6 +19,11 @@ yargs.command('image', 'convert an image to ascii')
     	.nargs('a', 1)
     	.choices('a', Object.keys(art.valueScales))
     	.describe('a', 'Which alphabet to use')
+    .alias('w', 'width')
+        .nargs('w', 1)
+        .describe('w', 'Set the width for the image')
+    .alias('x', 'xterm')
+        .describe('x', 'Use xterm-256 colors')
     .help('h')
     .alias('h', 'help')
     .epilog('©2016 - Abbey Hawk Sparrow');
@@ -30,6 +35,9 @@ switch(action){
 			filepath: argv.f
 		};
 		if(argv.a) options.alphabet = argv.a;
+        if(argv.w) options.width = argv.w;
+        if(argv.x) options.xterm = true;
+
 		var image = new art.Image(options);
 		image.write(function(err, rendered){
 			if(argv.o){
